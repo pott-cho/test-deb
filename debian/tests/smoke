@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+
+command -v hello-deb >/dev/null
+output="$(hello-deb)"
+test "$output" = "hello-deb package says hello"
+test -x /usr/bin/hello-deb

@@ -1,0 +1,5 @@
+hello-deb (0.1.0-1) unstable; urgency=medium
+
+  * Initial minimal test package.
+
+ -- Pott <pott@example.com>  Tue, 12 May 2026 07:00:00 +0000

@@ -1,0 +1,14 @@
+Source: hello-deb
+Section: misc
+Priority: optional
+Maintainer: Pott <pott@example.com>
+Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+
+Package: hello-deb
+Architecture: all
+Depends: ${misc:Depends}
+Description: Minimal test Debian package example
+ A tiny example package that installs one shell script for testing
+ Debian packaging workflows.
