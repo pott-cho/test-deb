@@ -1,11 +1,6 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   build-and-test:
@@ -24,4 +19,4 @@ jobs:
         run: dpkg-buildpackage -us -uc -b
 
       - name: Run autopkgtest
-        run: autopkgtest . -- null
+        run: sudo autopkgtest ../hello-deb_*.changes -- null
