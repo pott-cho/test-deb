@@ -1,4 +1,4 @@
-hello-deb (0.1.0-1) unstable; urgency=medium
+hello-deb (0.1.0-1) RELEASED; urgency=medium
 
   * Initial minimal test package.
 
