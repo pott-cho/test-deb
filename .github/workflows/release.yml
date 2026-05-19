@@ -68,22 +68,18 @@ jobs:
             echo "Package release for version ${TAG}" > /tmp/release_notes_temp.txt
           fi
 
-          RELEASE_NOTES_B64="$(base64 < /tmp/release_notes_temp.txt | tr -d '\n')"
-          echo "release_notes_b64=$RELEASE_NOTES_B64" >> "$GITHUB_OUTPUT"
-
       - name: Create a Release and Upload Assets
         run: |
           RELEASE_TMP_DIR="$RUNNER_TEMP/hello-deb-release"
-          echo "${{ steps.release_notes.outputs.release_notes_b64 }}" | base64 -d > release_notes.txt
 
-          NOTES="$(< ./release_notes.txt)"
+          NOTES="/tmp/release_notes_temp.txt"
           curl -fsSL -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "$(jq -n \
                  --arg tag_name "${{ env.TAG }}" \
                  --arg name "${{ env.TITLE }} ${{ env.TAG }}" \
-                 --arg body "$NOTES" \
+                 --rawfile body "$NOTES" \
                  '{ tag_name: $tag_name, name: $name, body: $body }')" \
             "https://api.github.com/repos/${{ github.repository }}/releases" \
             -o release.json
